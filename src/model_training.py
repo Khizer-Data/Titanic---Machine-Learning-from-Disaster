@@ -133,7 +133,7 @@ def main():
         # save last df
         df.to_csv('data/model_training.csv', index=False)
         logger.info("Data saved successfully")
-        X_train, X_test, y_train, y_test = data_splitting(df, 'Survived', test_size=0.2, random_state=42)
+        X_train, X_test, y_train, y_test = data_splitting(df, 'Survived', test_size=0.21, random_state=42)
         # save test data
         X_test.to_csv('data/X_test.csv', index=False)
         logger.info("X_test saved successfully")
