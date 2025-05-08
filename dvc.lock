@@ -61,8 +61,8 @@ stages:
       size: 55343
     - path: src/model_training.py
       hash: md5
-      md5: 2e32dbd0bf7d0c51a114ab5b9fcf56b3
-      size: 6246
+      md5: 935d624620019efe91c5472b059f3f54
+      size: 4474
     outs:
     - path: data/X_test.csv
       hash: md5
@@ -76,22 +76,22 @@ stages:
       hash: md5
       md5: 76bd4282c87663acba983d7c4b7e62c3
       size: 950
-    - path: models/Gradient Boosting.pkl
+    - path: models/gradient_boosting.pkl
       hash: md5
-      md5: 3ed98741dd7dbaff8cd80a763c044a8a
-      size: 133686
-    - path: models/Histogram Gradient Boosting.pkl
+      md5: c9a7e6c7f1701156ed8c1b2441a81ae9
+      size: 133687
+    - path: models/histogram_gradient_boosting.pkl
       hash: md5
-      md5: 113e4b22047a4fb195bb16dbaed8015a
-      size: 318395
-    - path: models/Logistic Regression.pkl
+      md5: 687867442e26c5fc04fd51efea29e6fe
+      size: 84735
+    - path: models/logistic_regression.pkl
       hash: md5
       md5: 34bc562853ad3e0520eaf8827856f114
       size: 950
-    - path: models/Random Forest.pkl
+    - path: models/random_forest.pkl
       hash: md5
-      md5: abcbc33a3cd45a30debab09917c350ca
-      size: 2233712
+      md5: d30558c36b12d42ef7ff447acc09161e
+      size: 150278
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
@@ -103,28 +103,28 @@ stages:
       hash: md5
       md5: 76bd4282c87663acba983d7c4b7e62c3
       size: 950
-    - path: models/Gradient Boosting.pkl
+    - path: models/gradient_boosting.pkl
       hash: md5
-      md5: 3ed98741dd7dbaff8cd80a763c044a8a
-      size: 133686
-    - path: models/Histogram Gradient Boosting.pkl
+      md5: c9a7e6c7f1701156ed8c1b2441a81ae9
+      size: 133687
+    - path: models/histogram_gradient_boosting.pkl
       hash: md5
-      md5: 113e4b22047a4fb195bb16dbaed8015a
-      size: 318395
-    - path: models/Logistic Regression.pkl
+      md5: 687867442e26c5fc04fd51efea29e6fe
+      size: 84735
+    - path: models/logistic_regression.pkl
       hash: md5
       md5: 34bc562853ad3e0520eaf8827856f114
       size: 950
-    - path: models/Random Forest.pkl
+    - path: models/random_forest.pkl
       hash: md5
-      md5: abcbc33a3cd45a30debab09917c350ca
-      size: 2233712
+      md5: d30558c36b12d42ef7ff447acc09161e
+      size: 150278
     - path: src/model_evaluation.py
       hash: md5
-      md5: 376279f15aa9bdcc0937fa148890de3f
-      size: 3555
+      md5: 1c138f9068a19945bfc429aa6fd75b11
+      size: 3499
     outs:
     - path: report/metrics.json
       hash: md5
-      md5: 4cee390f99730210c3005105cb0ba7c0
-      size: 938
+      md5: 5b6c64716da1d8322aae3635d33bb3d3
+      size: 937

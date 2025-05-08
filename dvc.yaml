@@ -33,10 +33,10 @@ stages:
       - data/model_training.csv
       - data/X_test.csv
       - data/y_test.csv
-      - models/Logistic Regression.pkl
-      - models/Gradient Boosting.pkl
-      - models/Histogram Gradient Boosting.pkl
-      - models/Random Forest.pkl
+      - models/logistic_regression.pkl
+      - models/gradient_boosting.pkl
+      - models/histogram_gradient_boosting.pkl
+      - models/random_forest.pkl
 
   model_evaluation:
     cmd: python src/model_evaluation.py
@@ -44,9 +44,9 @@ stages:
       - src/model_evaluation.py
       - data/X_test.csv
       - data/y_test.csv
-      - models/Logistic Regression.pkl
-      - models/Gradient Boosting.pkl
-      - models/Histogram Gradient Boosting.pkl
-      - models/Random Forest.pkl
+      - models/logistic_regression.pkl
+      - models/gradient_boosting.pkl
+      - models/histogram_gradient_boosting.pkl
+      - models/random_forest.pkl
     outs:
       - report/metrics.json
