@@ -4,6 +4,11 @@ import logging
 import pickle
 import json
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+from dvclive import Live
+import yaml
+
+
+
 
 def load_data(file_path):
     logger.debug(f"Loading data from {file_path}")
@@ -57,10 +62,17 @@ def save_metrics(metrics, report_folder):
     with open(metrics_file, 'w') as f:
         json.dump(metrics, f, indent=4)
 
+def load_params(path='params.yaml'):
+    with open(path, 'r') as file:
+        return yaml.safe_load(file)
+
 def main():
     logger = setup_logger()
     
     try:
+        # Load parameters
+        params = load_params()
+        
         # Load test data
         X_test = pd.read_csv('data/X_test.csv')
         y_test = pd.read_csv('data/y_test.csv')
@@ -73,21 +85,32 @@ def main():
             'random_forest': 'models/random_forest.pkl'
         }
         
-        all_metrics = {}  # Changed from metrics to all_metrics
-        for model_name, model_path in model_paths.items():
-            model = load_model(model_path, logger)
-            logger.info(f"Evaluating {model_name}...")
+        all_metrics = {}
+        # Experiment tracking using DVC Live
+        with Live(save_dvc_exp=True) as live:
+            for model_name, model_path in model_paths.items():
+                model = load_model(model_path, logger)
+                logger.info(f"Evaluating {model_name}...")
 
-            accuracy, precision, recall, f1, roc_auc = evaluate_model(model, X_test, y_test)
+                accuracy, precision, recall, f1, roc_auc = evaluate_model(model, X_test, y_test)
 
-            # Store metrics for the current model
-            all_metrics[model_name] = {
-                'accuracy': accuracy,
-                'precision': precision,
-                'recall': recall,
-                'f1': f1,
-                'roc_auc': roc_auc
-            }
+                # Store metrics for the current model
+                model_metrics = {
+                    'accuracy': accuracy,
+                    'precision': precision,
+                    'recall': recall,
+                    'f1': f1,
+                    'roc_auc': roc_auc
+                }
+                all_metrics[model_name] = model_metrics
+
+                # Log metrics individually for each model
+                for metric_name, value in model_metrics.items():
+                    live.log_metric(f"{model_name}_{metric_name}", value)
+
+            # Log parameters
+            for param_name, param_value in params.items():
+                live.log_param(param_name, param_value)
 
         # Save all metrics to the 'report' folder
         save_metrics(all_metrics, 'report')
@@ -95,7 +118,7 @@ def main():
     
     except Exception as e:
         logger.error(f"Error during evaluation: {e}")
-        raise  # Add raise to propagate the error
+        raise
 
 if __name__ == "__main__":
     main()

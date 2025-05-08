@@ -63,6 +63,25 @@ stages:
       hash: md5
       md5: 935d624620019efe91c5472b059f3f54
       size: 4474
+    params:
+      params.yaml:
+        model_training.gradient_boosting:
+          n_estimators: 100
+          learning_rate: 0.1
+          max_depth: 3
+        model_training.histogram_gradient_boosting:
+          max_iter: 100
+          learning_rate: 0.1
+          max_depth: 3
+        model_training.logistic_regression:
+          C: 1.0
+          max_iter: 100
+        model_training.random_forest:
+          n_estimators: 100
+          max_depth: 3
+          random_state: 42
+        model_training.random_state: 42
+        model_training.test_size: 0.21
     outs:
     - path: data/X_test.csv
       hash: md5
@@ -78,11 +97,11 @@ stages:
       size: 950
     - path: models/gradient_boosting.pkl
       hash: md5
-      md5: c9a7e6c7f1701156ed8c1b2441a81ae9
-      size: 133687
+      md5: 1f3f570efabe1b1e5f35a2b4e536054a
+      size: 133686
     - path: models/histogram_gradient_boosting.pkl
       hash: md5
-      md5: 687867442e26c5fc04fd51efea29e6fe
+      md5: a96b853f50b06bda707012871f1c8d9f
       size: 84735
     - path: models/logistic_regression.pkl
       hash: md5
@@ -105,11 +124,11 @@ stages:
       size: 950
     - path: models/gradient_boosting.pkl
       hash: md5
-      md5: c9a7e6c7f1701156ed8c1b2441a81ae9
-      size: 133687
+      md5: 1f3f570efabe1b1e5f35a2b4e536054a
+      size: 133686
     - path: models/histogram_gradient_boosting.pkl
       hash: md5
-      md5: 687867442e26c5fc04fd51efea29e6fe
+      md5: a96b853f50b06bda707012871f1c8d9f
       size: 84735
     - path: models/logistic_regression.pkl
       hash: md5
@@ -121,8 +140,8 @@ stages:
       size: 150278
     - path: src/model_evaluation.py
       hash: md5
-      md5: 1c138f9068a19945bfc429aa6fd75b11
-      size: 3499
+      md5: 20e10e98dbf0f1fd96034c2cd5540f04
+      size: 4189
     outs:
     - path: report/metrics.json
       hash: md5
